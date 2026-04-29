@@ -2,11 +2,15 @@ import { fastifyCors } from '@fastify/cors'
 import { fastify } from 'fastify'
 import {
   hasZodFastifySchemaValidationErrors,
+  jsonSchemaTransform,
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod'
 import { env } from '@/env'
 import { linkRoute } from './routes/link'
+import fastifyMultipart from '@fastify/multipart'
+import fastifySwagger from '@fastify/swagger'
+import { fastifySwaggerUi } from '@fastify/swagger-ui'
 
 const server = fastify()
 
@@ -29,6 +33,21 @@ server.setErrorHandler((error, _request, reply) => {
 })
 
 server.register(fastifyCors, { origin: '*' })
+
+server.register(fastifyMultipart)
+server.register(fastifySwagger, {
+  openapi: {
+    info: {
+      title: "Brev.ly",
+      version: "1.0.0"
+    }
+  },
+  transform: jsonSchemaTransform,
+})
+
+server.register(fastifySwaggerUi, {
+  routePrefix: '/docs'
+})
 
 server.register(linkRoute)
 
