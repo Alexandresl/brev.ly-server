@@ -13,11 +13,13 @@ export const linkRoute: FastifyPluginAsyncZod = async server => {
         }),
         response: {
           201: z.object({ urlId: z.string() }),
-          409: z.object({ message: z.string() }).describe('URL already exists.'),
-        }
+          409: z
+            .object({ message: z.string() })
+            .describe('URL already exists.'),
+        },
       },
     },
-    async (request, reply) => {
+    async (_request, reply) => {
       return reply.status(201).send({
         urlId: '12310',
       })
