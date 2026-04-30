@@ -1,4 +1,7 @@
 import { fastifyCors } from '@fastify/cors'
+import fastifyMultipart from '@fastify/multipart'
+import fastifySwagger from '@fastify/swagger'
+import { fastifySwaggerUi } from '@fastify/swagger-ui'
 import { fastify } from 'fastify'
 import {
   hasZodFastifySchemaValidationErrors,
@@ -8,9 +11,6 @@ import {
 } from 'fastify-type-provider-zod'
 import { env } from '@/env'
 import { linkRoute } from './routes/link'
-import fastifyMultipart from '@fastify/multipart'
-import fastifySwagger from '@fastify/swagger'
-import { fastifySwaggerUi } from '@fastify/swagger-ui'
 
 const server = fastify()
 
@@ -38,15 +38,15 @@ server.register(fastifyMultipart)
 server.register(fastifySwagger, {
   openapi: {
     info: {
-      title: "Brev.ly",
-      version: "1.0.0"
-    }
+      title: 'Brev.ly',
+      version: '1.0.0',
+    },
   },
   transform: jsonSchemaTransform,
 })
 
 server.register(fastifySwaggerUi, {
-  routePrefix: '/docs'
+  routePrefix: '/docs',
 })
 
 server.register(linkRoute)
