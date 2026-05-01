@@ -10,7 +10,10 @@ import {
   validatorCompiler,
 } from 'fastify-type-provider-zod'
 import { env } from '@/env'
-import { linkRoute } from './routes/link'
+import { accessLinkRoute } from './routes/access-link'
+import { createLinkRoute } from './routes/create-link'
+import { deleteLinkRoute } from './routes/delete-link'
+import { getLinksRoute } from './routes/get-links'
 
 const server = fastify()
 
@@ -49,7 +52,10 @@ server.register(fastifySwaggerUi, {
   routePrefix: '/docs',
 })
 
-server.register(linkRoute)
+server.register(createLinkRoute)
+server.register(getLinksRoute)
+server.register(accessLinkRoute)
+server.register(deleteLinkRoute)
 
 console.log(env.DATABASE_URL)
 
