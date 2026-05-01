@@ -13,6 +13,7 @@ import { env } from '@/env'
 import { accessLinkRoute } from './routes/access-link'
 import { createLinkRoute } from './routes/create-link'
 import { deleteLinkRoute } from './routes/delete-link'
+import { exportLinksRoute } from './routes/export-links'
 import { getLinksRoute } from './routes/get-links'
 
 const server = fastify()
@@ -56,6 +57,7 @@ server.register(createLinkRoute)
 server.register(getLinksRoute)
 server.register(accessLinkRoute)
 server.register(deleteLinkRoute)
+server.register(exportLinksRoute)
 
 console.log(env.DATABASE_URL)
 

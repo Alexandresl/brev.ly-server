@@ -27,7 +27,7 @@ export async function uploadFileToStorage(input: UploadFileToStorageInput) {
   )
   const sanitizedFileNameWithExtension = sanitizedFileName.concat(fileExtension)
 
-  const uniqueFileName = `${folder}/${randomUUID}-${sanitizedFileNameWithExtension}`
+  const uniqueFileName = `${folder}/${randomUUID()}-${sanitizedFileNameWithExtension}`
 
   const upload = new Upload({
     client: r2,
