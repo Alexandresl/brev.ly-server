@@ -10,7 +10,7 @@ const createLinkRequest = z.object({
   shortUrl: z.string(),
 })
 
-type CreateLInkRequest = z.input<typeof createLink>
+type CreateLInkRequest = z.input<typeof createLinkRequest>
 
 export async function createLink(
   input: CreateLInkRequest

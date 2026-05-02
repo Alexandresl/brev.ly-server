@@ -12,7 +12,7 @@ export async function makeLinks(
     .insert(schema.links)
     .values({
       originalUrl: `http://www.${domainName}.com`,
-      shortUrl: `${domainName}-${faker.number.int(100)}`,
+      shortUrl: `${domainName}-${faker.number.int(10000)}`,
       clicks: faker.number.int(100),
       ...overrides,
     })
